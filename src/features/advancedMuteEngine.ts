@@ -77,18 +77,14 @@ export const setupAME = makeBTDModule(({TD, jq}) => {
         options: false,
         actions: false,
       },
-      name: 'Mute accounts with an NFT avatar',
-      descriptor: 'accounts with an NFT avatar',
+      name: 'Mute accounts withOUT an NFT avatar',
+      descriptor: 'accounts withOUT an NFT avatar',
       placeholder: 'nothing!',
       function(t, e) {
-        if (typeof e.user?.hasNftAvatar === 'undefined') {
-          return true;
-        }
-
         if (e.user.hasNftAvatar && !window.caughtNFTs.has(e.user.screenName)) {
           window.caughtNFTs.add(e.user.screenName);
         }
-        return e.user.hasNftAvatar === false;
+        return e.user.hasNftAvatar;
       },
     },
     BTD_specific_tweet: {
